@@ -20,6 +20,6 @@
   },
   "dependencies": {
     "cron": "^3.1.7",
-    "json-server": "^1.0.0-alpha.23"
+    "dotenv": "^16.4.5"
   }
 }
