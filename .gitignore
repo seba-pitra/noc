@@ -5,4 +5,4 @@ package-lock.json
 logs
 .env
 
-mongo/
+src/mongo/
