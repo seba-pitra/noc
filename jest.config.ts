@@ -107,7 +107,9 @@ const config: Config = {
   // Opcional - The paths to modules that run some
   // code to configure or set up the testing
   // environment before each test
-  // setupFiles: ['dotenv/config'],
+  setupFiles: [
+    '<rootDir>/setupTests.ts'
+  ],
 
   // Run tests from one or more projects
   // projects: undefined,
