@@ -2,7 +2,7 @@ import { envs } from '../../../src/config/plugins/envs.plugin';
 
 describe ('envs.plugin.ts', () => {
     
-    test('should return env options', () => {console.log(envs)
+    test('should return env options', () => {
         expect(envs).toEqual({
             PORT: 3000,
             MAILER_SERVICE: 'gmail',
