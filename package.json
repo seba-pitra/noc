@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsnd --respawn --clear src/app.ts",
+    "init:database": "npx prisma migrate dev --name init", 
+    "dev": "docker compose up -d  && npm run init:database && tsnd --respawn --clear src/app.ts",
     "build": "rimraf ./dist && tsc",
     "start": "npm run build && node dist/app.js",
     "docker:test": "docker compose -f docker-compose.test.yml --env-file .env.test up -d",
