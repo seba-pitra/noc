@@ -1,4 +1,4 @@
-import { LogSeverityLevel } from "../domain/entities/log.entity";
+import { envs } from "../config/plugins/envs.plugin";
 import { CheckService } from "../domain/use-cases/checks/check-service";
 import { CheckServiceMultiple } from "../domain/use-cases/checks/check-service-multiple";
 import { SendEmailLogs } from "../domain/use-cases/email/send-email-logs";
@@ -8,13 +8,14 @@ import { PostgresLogDatasource } from "../infrastructure/datasources/postgres-lo
 import { LogRepositoryImpl } from "../infrastructure/repositories/log.repository.impl";
 import { CronService } from "./cron/cron-service"
 import { EmailService } from "./email/email-service";
+import nodemailer from 'nodemailer';
 
 
 
 const logRepository = new LogRepositoryImpl(
-    // new FileSystemDatasource()
+    new FileSystemDatasource()
     // new MongoLogDatasource()
-    new PostgresLogDatasource()
+    // new PostgresLogDatasource()
 )
 
 const fsLogRepository = new LogRepositoryImpl(
@@ -27,7 +28,14 @@ const postgresLogRepository = new LogRepositoryImpl(
     new PostgresLogDatasource()
 )
 
-const emailService = new EmailService(); 
+const trasporter = nodemailer.createTransport({
+    service: envs.MAILER_SERVICE,
+    auth: {
+        user: envs.MAILER_EMAIL,
+        pass: envs.MAILER_SECRET_KEY,
+    }
+})
+const emailService = new EmailService(trasporter); 
 
 export class ServerApp {
     
@@ -35,28 +43,28 @@ export class ServerApp {
     public static async start() {
         console.log('Server Started')
 
-        // new SendEmailLogs(
-        //     emailService,
-        //     fileSystemLogRepository
-        // )
-        // .execute([
-        //     'sebastian.pitra10@gmail.com',
-        //     'seeba5024@gmail.com',
-        // ])
+        new SendEmailLogs(
+            emailService,
+            fsLogRepository
+        )
+        .execute([
+            'yourEmail@gmail.com',
+        ])
         
-        const createdJob3 = CronService.createJob(
+
+        CronService.createJob(
             '*/5 * * * * *',
             () => {
                 const url = 'https://www.google.com';
 
                 // new CheckService(
-                //     logRepository,
+                //     postgresLogRepository,
                 //     () => console.log('success'),
                 //     (error) => console.error(error),
                 // ).execute( url );
 
                 new CheckServiceMultiple(
-                    [ fsLogRepository, mongoLogRepository, postgresLogRepository ],
+                    [ fsLogRepository, mongoLogRepository,postgresLogRepository ],
                     () => console.log('success'),
                     (error) => console.error(error),
                 ).execute( url );
