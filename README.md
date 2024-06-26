@@ -48,12 +48,6 @@ Make sure you have the following programs installed before you begin:
    npm install
    ```
 
-3. Start app:
-
-```bash
-npm run dev
-```
-
 ## Configuration
 
 1. Create a `.env` file in the root of the project using the environment variables found at `.env.template`.
