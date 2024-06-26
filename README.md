@@ -1,6 +1,5 @@
 # NOC (Network Operation Center)
 
-
 <p >
    NOC is a scalable solution designed to monitor the status of servers in real-time. 
    This system helps administrators receive alerts for any issues via email, 
@@ -9,6 +8,7 @@
 </p>
 
 ## Tech Stack
+
 <div align="start">
   <img align="center" alt="Node" height="70" width="80" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original-wordmark.svg" />
   <img align="center" alt="typescript" height="90" width="70" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" />
@@ -38,20 +38,26 @@ Make sure you have the following programs installed before you begin:
 
 1. Clone this repository to your local machine using `git`:
 
-    ```bash
-    git clone https://github.com/seba-pitra/noc.git
-    ```
+   ```bash
+   git clone https://github.com/seba-pitra/noc.git
+   ```
 
 2. Install the project dependencies:
 
-    ```bash
-    npm install
-    ```
+   ```bash
+   npm install
+   ```
+
+3. Start app:
+
+```bash
+npm run dev
+```
 
 ## Configuration
 
 1. Create a `.env` file in the root of the project using the environment variables found at `.env.template`.
-Make sure to replace the example values with your actual configuration.
+   Make sure to replace the example values with your actual configuration.
 
 ## Usage
 
@@ -62,15 +68,12 @@ npm run dev
 ```
 
 ## Contributing
-Solo puedes colaborar con invitacion del administrador del repositorio. Si eres parte del equipo de desarrollo, hay pasos que debes seguir para 
-un manejo correcto de Gitflow:
+
 1. Fork the project.
 2. Create a new branch `git checkout -b feature/new-feature`.
 3. Make your changes and commit them `git commit -m 'feat: your commit description'`
-4. Push to the branch  `git push origin feature/new-feature`
+4. Push to the branch `git push origin feature/new-feature`
 5. Create a new Pull Request.
 
->[!CAUTION]
+> [!CAUTION]
 > Your pull request WILL NOT BE ACCEPTED if you do not follow the branch and commit conventions established in this gist: https://gist.github.com/ivandevp/41bfb0c77b38d042456dc8fbb4aba885
-
-
